@@ -3,15 +3,15 @@ class Animal {
   final String name;
   final String gender;
   final String imageUrl;
-  final List<Animal> parents;
-  final List<Animal> children;
+  List<Animal> parents = List.empty(growable: true);
+  List<Animal> children = List.empty(growable: true);
 
   Animal({
     required this.id,
     required this.name,
     required this.gender,
     required this.imageUrl,
-    this.parents = const <Animal>[],
-    this.children = const <Animal>[],
+    required this.parents,
+    required this.children,
   });
 }

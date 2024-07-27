@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tree_animal_task/app/modules/family_tree/view/family_tree.dart';
+import 'package:tree_animal_task/app/modules/animals_home.dart/view/animals_home_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: FamilyTreePage(),
+      home: const AnimalsHomeView(),
     );
   }
 }

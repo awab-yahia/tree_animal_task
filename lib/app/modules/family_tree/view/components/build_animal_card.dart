@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:graphview/GraphView.dart' as graphview;
 import 'package:svg_flutter/svg.dart';
-import 'package:tree_animal_task/app/modules/family_tree/controller/animal_controller.dart';
-import 'package:tree_animal_task/app/modules/family_tree/model/animal.dart';
+import 'package:tree_animal_task/app/modules/family_tree/controller/family_tree_controller.dart';
+import 'package:tree_animal_task/app/data/models/animal.dart';
 
 Widget buildAnimalCard(String text, graphview.Node node) {
   Animal? currentAnimal =

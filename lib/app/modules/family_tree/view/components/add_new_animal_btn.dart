@@ -1,21 +1,34 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:graphview/GraphView.dart' as graphview;
-import 'package:tree_animal_task/app/modules/family_tree/view/components/add_new_animal.dart';
+import 'package:tree_animal_task/app/modules/animals_home.dart/view/components/create_animal_btm_sheet.dart';
 
 class AddNewAnimalBTN extends StatelessWidget {
   const AddNewAnimalBTN({
     super.key,
+    required this.nodeID,
   });
-  // final graphview.Node node;
+
+  final String nodeID;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
-        Get.defaultDialog(
-          title: 'Add Child',
-          content: AddChildDialog(node: graphview.Node.Id("10")),
-        );
+        //
+        log(nodeID);
+        if (nodeID.contains("#")) {
+          String clearID = nodeID.replaceAll("#", "");
+          Get.bottomSheet(CreateAnimalBtmSheet(
+              isToAddChild: true, isToAddParent: false, rootID: clearID));
+          //
+        } else if (nodeID.contains("^") || nodeID.contains("&")) {
+          //
+          String firstClear = nodeID.replaceAll("^", "");
+          String clearID = firstClear.replaceAll("&", "");
+          Get.bottomSheet(CreateAnimalBtmSheet(
+              isToAddChild: false, isToAddParent: true, rootID: clearID));
+        }
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
