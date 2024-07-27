@@ -45,14 +45,14 @@ class FamilyTreeController extends GetxController {
       nodes['${rootAnimal.id}#'] =
           graphview.Node.Id('${rootAnimal.id}#'); // to make the addition btn
 
-      if (rootAnimal.parents == null || rootAnimal.parents!.isEmpty) {
+      if (rootAnimal.parents.isEmpty) {
         // to make the addition btn
         // =>   ^ means its the father position
         // =>   & means its the Mother position
         nodes['${rootAnimal.id}&'] = graphview.Node.Id('${rootAnimal.id}&');
         nodes['${rootAnimal.id}^'] = graphview.Node.Id('${rootAnimal.id}^');
-      } else if (rootAnimal.parents?.length == 1) {
-        if (rootAnimal.parents?[0].gender == "male") {
+      } else if (rootAnimal.parents.length == 1) {
+        if (rootAnimal.parents[0].gender == "male") {
           nodes['${rootAnimal.id}&'] = graphview.Node.Id('${rootAnimal.id}&');
         } else {
           nodes['${rootAnimal.id}^'] = graphview.Node.Id('${rootAnimal.id}^');
@@ -99,15 +99,15 @@ class FamilyTreeController extends GetxController {
         // drow all other  edges
         for (var animal in animalsList) {
           // drow children edges
-          if (animal.children != null && animal.children!.isNotEmpty) {
-            for (var child in animal.children!) {
+          if (animal.children.isNotEmpty) {
+            for (var child in animal.children) {
               graph.addEdge(nodes[animal.id]!, nodes[child.id]!);
             }
           }
 
           // drow parents edges
-          if (animal.parents != null && animal.parents!.isNotEmpty) {
-            for (var parent in animal.parents!) {
+          if (animal.parents.isNotEmpty) {
+            for (var parent in animal.parents) {
               graph.addEdge(nodes[parent.id]!, nodes[animal.id]!);
             }
           }

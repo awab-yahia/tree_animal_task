@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:tree_animal_task/app/data/models/animal.dart';
 import 'package:tree_animal_task/app/modules/family_tree/controller/family_tree_controller.dart';
@@ -60,5 +59,28 @@ class AnimalsHomeController extends GetxController {
       animalsList.add(newAnimal);
       update();
     }
+  }
+
+  //
+
+//SECTION -  serch part
+  List<Animal>? filteredList = List.empty(growable: true);
+
+  buildSuggestionsList(String query) {
+    filteredList = animalsList
+        .where(
+            (animal) => animal.name.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      update();
+    });
+  }
+
+  // remove item from suggestions
+
+  removeSuggestion(int index) {
+    filteredList?.removeAt(index);
+    update();
   }
 }

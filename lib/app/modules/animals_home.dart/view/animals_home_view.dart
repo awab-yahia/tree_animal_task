@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:tree_animal_task/app/data/models/animal.dart';
 import 'package:tree_animal_task/app/modules/animals_home.dart/controller/animals_home_controller.dart';
+import 'package:tree_animal_task/app/modules/animals_home.dart/view/components/animals_search_delegate.dart';
 import 'package:tree_animal_task/app/modules/animals_home.dart/view/components/create_animal_btm_sheet.dart';
 import 'package:tree_animal_task/app/modules/family_tree/view/family_tree_view.dart';
 import 'package:tree_animal_task/core/widgets/custom_btn.dart';
@@ -18,9 +19,14 @@ class AnimalsHomeView extends StatelessWidget {
       appBar: AppBar(
         title: const Text("animals-pets"),
         actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Get.width * .025),
-            child: const Icon(Icons.search),
+          InkWell(
+            onTap: () {
+              showSearch(context: context, delegate: AnimalsSearchDelegate());
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: Get.width * .025),
+              child: const Icon(Icons.search),
+            ),
           )
         ],
       ),
@@ -139,16 +145,31 @@ class NoAnimalsExist extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Center(child: SvgPicture.asset("assets/icons/tree.svg")),
-
-        SizedBox(height: Get.height * .05),
-        //
-        const BigText(text: "No Results", fontSize: 16),
+        const NoResults(),
         //
         SizedBox(height: Get.height * .02),
         //
         const SmallText(
             text: "Do you want to create an animal ?", fontSize: 14),
+      ],
+    );
+  }
+}
+
+class NoResults extends StatelessWidget {
+  const NoResults({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Center(child: SvgPicture.asset("assets/icons/tree.svg")),
+
+        SizedBox(height: Get.height * .05),
+        //
+        const BigText(text: "No Results", fontSize: 16),
       ],
     );
   }
