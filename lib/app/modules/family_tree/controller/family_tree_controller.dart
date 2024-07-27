@@ -101,6 +101,9 @@ class FamilyTreeController extends GetxController {
           // drow children edges
           if (animal.children.isNotEmpty) {
             for (var child in animal.children) {
+              if (nodes[child.id] == null) {
+                nodes[child.id] = graphview.Node.Id(child.id);
+              }
               graph.addEdge(nodes[animal.id]!, nodes[child.id]!);
             }
           }
@@ -108,6 +111,10 @@ class FamilyTreeController extends GetxController {
           // drow parents edges
           if (animal.parents.isNotEmpty) {
             for (var parent in animal.parents) {
+              if (nodes[parent.id] == null) {
+                // add the node first =>
+                nodes[parent.id] = graphview.Node.Id(parent.id);
+              }
               graph.addEdge(nodes[parent.id]!, nodes[animal.id]!);
             }
           }

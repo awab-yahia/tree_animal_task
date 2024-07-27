@@ -41,25 +41,28 @@ class _FamilyTreeViewState extends State<FamilyTreeView> {
           child: GetBuilder<FamilyTreeController>(
             builder: (controller) {
               //
-              return graphview.GraphView(
-                graph: controller.graph,
-                algorithm: graphview.BuchheimWalkerAlgorithm(controller.builder,
-                    graphview.TreeEdgeRenderer(controller.builder)),
-                paint: Paint()
-                  ..color = Colors.green
-                  ..strokeWidth = 1.8
-                  ..style = PaintingStyle.fill,
-                builder: (graphview.Node node) {
-                  String nodeID = node.key!.value as String;
-                  return nodeID.contains("#") ||
-                          nodeID.contains("^") ||
-                          nodeID.contains("&")
-                      ? AddNewAnimalBTN(nodeID: nodeID)
-                      : buildAnimalCard(
-                          nodeID,
-                          node,
-                        );
-                },
+              return Container(
+                child: graphview.GraphView(
+                  graph: controller.graph,
+                  algorithm: graphview.BuchheimWalkerAlgorithm(
+                      controller.builder,
+                      graphview.TreeEdgeRenderer(controller.builder)),
+                  paint: Paint()
+                    ..color = Colors.green
+                    ..strokeWidth = 1.8
+                    ..style = PaintingStyle.fill,
+                  builder: (graphview.Node node) {
+                    String nodeID = node.key!.value as String;
+                    return nodeID.contains("#") ||
+                            nodeID.contains("^") ||
+                            nodeID.contains("&")
+                        ? AddNewAnimalBTN(nodeID: nodeID)
+                        : buildAnimalCard(
+                            nodeID,
+                            node,
+                          );
+                  },
+                ),
               );
             },
           ),

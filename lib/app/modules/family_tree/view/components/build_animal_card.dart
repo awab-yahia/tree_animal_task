@@ -10,7 +10,7 @@ Widget buildAnimalCard(String text, graphview.Node node) {
       Get.find<FamilyTreeController>().getSingleAnimal(text);
 
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(20.0),
     child: Column(
       children: [
         ClipRRect(
